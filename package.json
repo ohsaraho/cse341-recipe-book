@@ -1,0 +1,25 @@
+{
+  "name": "cse341-recipe-book-project",
+  "version": "1.0.0",
+  "description": "Recipe book project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js",
+    "dev_start": "nodemon app.js",
+    "swagger": "node ./swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohsaraho/cse341-recipe-book-project.git"
+  },
+  "author": "Sarah Osguthorpe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ohsaraho/cse341-recipe-book-project/issues"
+  },
+  "homepage": "https://github.com/ohsaraho/cse341-recipe-book-project#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
