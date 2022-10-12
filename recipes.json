@@ -1,0 +1,56 @@
+{
+    "recipeName": "Homemade Spaghetti Sauce",
+    "ingredients": [
+        {
+            "quantity": "6",
+            "name": "tomato sauce",
+            "type": "Vegetable/Fruit"
+        },
+        {
+            "quantity": "2 Tbsp",
+            "name": "cane sugar",
+            "type": "Drinks"
+        },
+        {
+            "quantity": "1 cup",
+            "name": "water",
+            "type": "Drinks"
+        },
+        {
+            "quantity": "2 tsp",
+            "name": "parsley flakes",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1 3/4 tsp",
+            "name": "basil flakes",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1 3/4 tsp",
+            "name": "oregano flakes",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1 3/4 tsp",
+            "name": "onion granules",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1 3/4 tsp",
+            "name": "garlic granules",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1 tsp",
+            "name": "salt",
+            "type": "Seasoning"
+        }
+    ],
+    "instructions": [
+        "Add all ingredients into a medium pot and whisk together until combined.",
+        "Cook for 5 minutes on medium heat.",
+        "Serve on spaghetti pasta or your favorite kind of pasta."
+    ],
+    "prepareTime": "15 minutes"
+}
