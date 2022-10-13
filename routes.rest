@@ -1,12 +1,12 @@
 // Localhost
 ###
-GET http://localhost:3000/recipes
+GET http://localhost:8080/recipes
 ###
-GET http://localhost:3000/recipes/632bf13d8d980b27b004bd05
+GET http://localhost:8080/recipes/632bf13d8d980b27b004bd05
 ###
-GET http://localhost:3000/recipes/632bf1fd8d980b27b004bd06
+GET http://localhost:8080/recipes/632bf1fd8d980b27b004bd06
 ###
-GET http://localhost:3000/recipes/632bf2428d980b27b004bd07
+GET http://localhost:8080/recipes/632bf2428d980b27b004bd07
 
 
 // Render
@@ -22,7 +22,7 @@ GET https://recipe-book-project.onrender.com/recipes/632bf2428d980b27b004bd07
 
 // Localhost
 ### Create contact 
-POST http://localhost:3000/recipes HTTP/1.1
+POST http://localhost:8080/recipes HTTP/1.1
 content-type: application/json
 
 # {
@@ -33,7 +33,7 @@ content-type: application/json
 # }
 
 ### Updated contact 
-PUT http://localhost:3000/recipes/632bf2428d980b27b004bd07 HTTP/1.1
+PUT http://localhost:8080/recipes/632bf2428d980b27b004bd07 HTTP/1.1
 content-type: application/json
 
 # {
@@ -44,7 +44,7 @@ content-type: application/json
 # }
 
 ### Delete contact 
-DELETE http://localhost:3000/recipes/6333bdc36c0f81f076ae4c2b HTTP/1.1
+DELETE http://localhost:8080/recipes/6333bdc36c0f81f076ae4c2b HTTP/1.1
 
 
 

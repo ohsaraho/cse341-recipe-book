@@ -5,7 +5,7 @@
     "description": "Recipes project using an API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
     "http"
@@ -33,19 +33,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "recipeName": {
                   "example": "any"
                 },
-                "lastName": {
+                "ingredients": {
                   "example": "any"
                 },
-                "email": {
+                "instructions": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "prepareTime": {
                   "example": "any"
                 }
               }
@@ -97,19 +94,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "recipeName": {
                   "example": "any"
                 },
-                "lastName": {
+                "ingredients": {
                   "example": "any"
                 },
-                "email": {
+                "instructions": {
                   "example": "any"
                 },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
+                "prepareTime": {
                   "example": "any"
                 }
               }
