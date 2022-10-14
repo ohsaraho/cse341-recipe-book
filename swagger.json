@@ -5,10 +5,10 @@
     "description": "Recipes project using an API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "recipe-book-project.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/recipes/": {
@@ -43,6 +43,9 @@
                   "example": "any"
                 },
                 "prepareTime": {
+                  "example": "any"
+                },
+                "tags": {
                   "example": "any"
                 }
               }
@@ -104,6 +107,9 @@
                   "example": "any"
                 },
                 "prepareTime": {
+                  "example": "any"
+                },
+                "tags": {
                   "example": "any"
                 }
               }

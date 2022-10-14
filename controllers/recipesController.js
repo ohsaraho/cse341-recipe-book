@@ -30,7 +30,8 @@ const createNewRecipe = async (req, res) => {
       recipeName: req.body.recipeName,
       ingredients: req.body.ingredients,
       instructions: req.body.instructions,
-      prepareTime: req.body.prepareTime
+      prepareTime: req.body.prepareTime,
+      tags: req.body.tags
     };
 
     const response = await mongodb.getDb().db('recipes_project').collection('recipes').insertOne(recipe);
@@ -52,7 +53,8 @@ const updateRecipe = async (req, res) => {
       recipeName: req.body.recipeName,
       ingredients: req.body.ingredients,
       instructions: req.body.instructions,
-      prepareTime: req.body.prepareTime
+      prepareTime: req.body.prepareTime,
+      tags: req.body.tags
 
     };
     

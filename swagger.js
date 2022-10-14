@@ -5,8 +5,8 @@ const doc = {
     title: 'Recipes API',
     description: 'Recipes project using an API',
   },
-  host: 'localhost:8080',
-  schemes: ['http'],
+  host: 'recipe-book-project.onrender.com',
+  schemes: ['https'],
 };
 
 

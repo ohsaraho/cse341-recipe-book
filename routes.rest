@@ -25,12 +25,13 @@ GET https://recipe-book-project.onrender.com/recipes/632bf2428d980b27b004bd07
 POST http://localhost:8080/recipes HTTP/1.1
 content-type: application/json
 
-# {
-#     "recipeName": "",
-#     "ingredients": "",
-#     "instructions": "",
-#     "prepareTime": ""
-# }
+{
+    "recipeName": "",
+    "ingredients": "",
+    "instructions": "",
+    "prepareTime": "",
+    "tags": ""
+}
 
 ### Updated contact 
 PUT http://localhost:8080/recipes/632bf2428d980b27b004bd07 HTTP/1.1
@@ -40,7 +41,8 @@ content-type: application/json
 #     "recipeName": "",
 #     "ingredients": "",
 #     "instructions": "",
-#     "prepareTime": ""
+#     "prepareTime": "",
+#     "tags": ""
 # }
 
 ### Delete contact 
@@ -53,23 +55,56 @@ DELETE http://localhost:8080/recipes/6333bdc36c0f81f076ae4c2b HTTP/1.1
 POST https://recipe-book-project.onrender.com/recipes HTTP/1.1
 content-type: application/json
 
-# {
-#     "recipeName": "",
-#     "ingredients": "",
-#     "instructions": "",
-#     "prepareTime": ""
-# }
+{
+    "recipeName": "Blueberry Smoothie",
+    "ingredients": [
+        {
+            "quantity": "1 cup",
+            "name": "almond milk or oatmilk",
+            "type": "Drinks"
+        },
+        {
+            "quantity": "2 medium",
+            "name": "bananas (frozen)",
+            "type": "Fruit"
+        },
+        {
+            "quantity": "3 cup",
+            "name": "blueberries (frozen)",
+            "type": "Fruit"
+        },
+        {
+            "quantity": "1 T",
+            "name": "maple syrup or honey",
+            "type": "Sweetener"
+        }
+    ],
+    "instructions": [
+        "Add all ingredients into a blender.",
+        "Blend on low for about 20 seconds, and then turn up speed to medium high until the mixture is smooth.",
+        "Add extra sweetener or milk if needed.",
+        "Optional: add a cup or more of spinach"
+    ],
+    "prepareTime": "5 minutes",
+    "tags": [
+        "breakfast",
+        "dessert",
+        "vegan",
+        "dairy free"
+    ]
+}
 
 ### Updated contact 
 PUT https://recipe-book-project.onrender.com/recipes/6333c1dfce9aaeddf709b441 HTTP/1.1
 content-type: application/json
 
-{
-    "recipeName": "",
-    "ingredients": "",
-    "instructions": "",
-    "prepareTime": ""
-}
+# {
+#     "recipeName": "",
+#     "ingredients": "",
+#     "instructions": "",
+#     "prepareTime": "",
+#     "tags": ""
+# }
 
 ### Delete contact 
 DELETE https://recipe-book-project.onrender.com/recipes/6333c1dfce9aaeddf709b441 HTTP/1.1

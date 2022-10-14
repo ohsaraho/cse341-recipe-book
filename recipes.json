@@ -52,5 +52,10 @@
         "Cook for 5 minutes on medium heat.",
         "Serve on spaghetti pasta or your favorite kind of pasta."
     ],
-    "prepareTime": "15 minutes"
+    "prepareTime": "15 minutes",
+    "tags": [
+        "breakfast",
+        "dessert",
+        "vegan"
+    ]
 }
