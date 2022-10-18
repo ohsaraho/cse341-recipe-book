@@ -7,6 +7,8 @@ router.get('/', recipesController.getAllIDs);
 
 router.get('/:id', recipesController.getSingleID);
 
+// router.get('/:tags', recipesController.getRecipeByName)
+
 router.post('/', recipesController.createNewRecipe);
 
 router.put('/:id', recipesController.updateRecipe);

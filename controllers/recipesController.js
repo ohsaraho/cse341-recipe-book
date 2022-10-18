@@ -24,6 +24,19 @@ const getSingleID = async (req, res) => {
   }
 };
 
+// you can only have one get by id, name or tag; not multiple
+const getRecipeByName= async (req, res) => {
+  try {
+    const tags = req.params.tags;
+    const result = await mongodb.getDb().db('recipes_project').collection('recipes').find({ tags: tags });
+    result.toArray().then((data) => {
+      res.json(data[0])
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 const createNewRecipe = async (req, res) => {
   try {
     const recipe = {
@@ -93,4 +106,4 @@ const deleteRecipe = async (req, res) => {
   }
 };
 
-module.exports = { getAllIDs, getSingleID, createNewRecipe, updateRecipe, deleteRecipe };
+module.exports = { getAllIDs, getSingleID, createNewRecipe, updateRecipe, deleteRecipe, getRecipeByName };
