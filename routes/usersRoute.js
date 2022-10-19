@@ -3,9 +3,9 @@ const router = express.Router();
 
 const usersController = require('../controllers/usersController');
 
-router.get('/', usersController.getAllIDs);
+router.get('/', usersController.getAllUsers);
 
-router.get('/:id', usersController.getSingleID);
+router.get('/:id', usersController.getUserByName);
 
 // router.get('/:tags', usersController.getUserByName)
 

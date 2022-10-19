@@ -1,7 +1,9 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const passwordUtil = require('../validation/passwordCheck');
 
-const getAllIDs = async (req, res) => {
+
+const getAllUsers = async (req, res) => {
   try {
     const result = await mongodb.getDb().db('recipes_project').collection('users').find();
     result.toArray().then((documents) => {
@@ -12,10 +14,10 @@ const getAllIDs = async (req, res) => {
   }
 };
 
-const getSingleID = async (req, res) => {
+const getUserByName = async (req, res) => {
   try {
-    const documentId = new ObjectId(req.params.id);
-    const result = await mongodb.getDb().db('recipes_project').collection('users').find({ _id: documentId });
+    const userName = req.params.id;
+    const result = await mongodb.getDb().db('recipes_project').collection('users').find({ userName: userName });
     result.toArray().then((document) => {
       res.json(document[0])
     });
@@ -25,25 +27,39 @@ const getSingleID = async (req, res) => {
 };
 
 // you can only have one get by id, name or tag; not multiple
-const getUserByName= async (req, res) => {
-  try {
-    const tags = req.params.tags;
-    const result = await mongodb.getDb().db('recipes_project').collection('users').find({ tags: tags });
-    result.toArray().then((data) => {
-      res.json(data[0])
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
+// const getUserByName= async (req, res) => {
+//   try {
+//     const tags = req.params.tags;
+//     const result = await mongodb.getDb().db('recipes_project').collection('users').find({ tags: tags });
+//     result.toArray().then((data) => {
+//       res.json(data[0])
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// };
 
 const createNewUser = async (req, res) => {
   try {
+
+    if (!req.body.username || !req.body.password) {
+      res.status(400).send({ message: 'Input can not be empty!' });
+      return;
+    }
+
     const user = {
       userName: req.body.userName,
       email: req.body.email,
       password: req.body.password
     };
+
+    const password = req.body.password;
+    const passwordCheck = passwordUtil.passwordPass(password);
+
+    if (passwordCheck.error) {
+      res.status(400).send({ message: passwordCheck.error });
+      return;
+    }
 
     const response = await mongodb.getDb().db('recipes_project').collection('users').insertOne(user);
 
@@ -59,7 +75,13 @@ const createNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const documentId = new ObjectId(req.params.id);
+    const userName = req.params.userName;
+
+    if (!userName) {
+      res.status(400).send({ message: 'Username Invalid' });
+      return;
+    }
+
     const updateUserDoc = {
       userName: req.body.userName,
       email: req.body.email,
@@ -72,7 +94,14 @@ const updateUser = async (req, res) => {
     //   $set: { favoriteColor: "Green" }
     // };
 
-    const response = await mongodb.getDb().db('recipes_project').collection('users').replaceOne({ _id: documentId }, updateUserDoc);
+    const password = req.body.password;
+    const passwordCheck = passwordUtil.passwordPass(password);
+    if (passwordCheck.error) {
+      res.status(400).send({ message: passwordCheck.error });
+      return;
+    }
+
+    const response = await mongodb.getDb().db('recipes_project').collection('users').replaceOne({ userName: userName }, updateUserDoc);
 
     if (response.modifiedCount > 0) {
       res.status(204).send();
@@ -87,9 +116,14 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const documentId = new ObjectId(req.params.id);
+    const userName = req.params.userName;
 
-    const response = await mongodb.getDb().db('recipes_project').collection('users').deleteOne({ _id: documentId }, true);
+    if (!userName) {
+      res.status(400).send({ message: 'Username Invalid' });
+      return;
+    }
+
+    const response = await mongodb.getDb().db('recipes_project').collection('users').deleteOne({ userName: userName }, true);
 
     if (response.deletedCount > 0) {
       res.status(200).send();
@@ -101,4 +135,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllIDs, getSingleID, createNewUser, updateUser, deleteUser, getUserByName };
+module.exports = { getAllUsers, getUserByName, createNewUser, updateUser, deleteUser };
