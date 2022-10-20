@@ -56,18 +56,21 @@
           "201": {
             "description": "Created"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/recipes/{id}": {
+    "/recipes/{recipeName}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "recipeName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -76,6 +79,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -86,7 +92,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "recipeName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -120,6 +126,9 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -129,7 +138,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "recipeName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -138,6 +147,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -167,16 +179,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
                 "userName": {
                   "example": "any"
                 },
                 "email": {
+                  "example": "any"
+                },
+                "password": {
                   "example": "any"
                 }
               }
@@ -196,12 +205,12 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/{userName}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "userName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -210,6 +219,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -220,7 +232,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "userName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -260,7 +272,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "userName",
             "in": "path",
             "required": true,
             "type": "string"

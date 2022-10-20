@@ -1,6 +1,7 @@
 const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+// const ObjectId = require('mongodb').ObjectId;
 const passwordUtil = require('../validation/passwordCheck');
+const { userSchema } = require('../validation/schemaValidation');
 
 
 const getAllUsers = async (req, res) => {
@@ -16,7 +17,12 @@ const getAllUsers = async (req, res) => {
 
 const getUserByName = async (req, res) => {
   try {
-    const userName = req.params.id;
+
+    if (!req.params.userName) {
+      res.status(400).json('Must use a valid username to find a user.');
+    }
+
+    const userName = req.params.userName;
     const result = await mongodb.getDb().db('recipes_project').collection('users').find({ userName: userName });
     result.toArray().then((document) => {
       res.json(document[0])
@@ -26,23 +32,10 @@ const getUserByName = async (req, res) => {
   }
 };
 
-// you can only have one get by id, name or tag; not multiple
-// const getUserByName= async (req, res) => {
-//   try {
-//     const tags = req.params.tags;
-//     const result = await mongodb.getDb().db('recipes_project').collection('users').find({ tags: tags });
-//     result.toArray().then((data) => {
-//       res.json(data[0])
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// };
-
 const createNewUser = async (req, res) => {
   try {
 
-    if (!req.body.username || !req.body.password) {
+    if (!req.body.userName || !req.body.email || !req.body.password) {
       res.status(400).send({ message: 'Input can not be empty!' });
       return;
     }
@@ -52,6 +45,14 @@ const createNewUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password
     };
+
+    const schemaValidationCheck = await userSchema.validateAsync(user);
+    // console.log(schemaValidationCheck);
+
+    if (schemaValidationCheck.error) {
+      res.status(400).send({ message: schemaValidationCheck.error });
+      return;
+    }
 
     const password = req.body.password;
     const passwordCheck = passwordUtil.passwordPass(password);
@@ -75,12 +76,18 @@ const createNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const userName = req.params.userName;
 
-    if (!userName) {
-      res.status(400).send({ message: 'Username Invalid' });
+    if (!req.body.userName || !req.body.email || !req.body.password) {
+      res.status(400).send({ message: 'Input can not be empty!' });
       return;
     }
+
+    const userName = req.params.userName;
+
+    // if (!userName) {
+    //   res.status(400).send({ message: 'Username Invalid' });
+    //   return;
+    // }
 
     const updateUserDoc = {
       userName: req.body.userName,

@@ -21,7 +21,17 @@ GET https://recipe-book-project.onrender.com/recipes/6349b6c12689d09aa05383f5
 
 
 // Localhost
-### Create contact 
+### Create user 
+POST http://localhost:8080/users HTTP/1.1
+content-type: application/json
+
+{
+    "userName": "sp",
+    "email": "Yepme@gmail.com",
+    "password": "Sood1234?"
+}
+
+### Create recipe 
 POST http://localhost:8080/recipes HTTP/1.1
 content-type: application/json
 
@@ -33,7 +43,7 @@ content-type: application/json
     "tags": ""
 }
 
-### Updated contact 
+### Updated recipe 
 PUT http://localhost:8080/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
 content-type: application/json
 
@@ -45,13 +55,13 @@ content-type: application/json
 #     "tags": ""
 # }
 
-### Delete contact 
+### Delete recipe 
 DELETE http://localhost:8080/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
 
 
 
 // Render
-### Create contact 
+### Create recipe 
 POST https://recipe-book-project.onrender.com/recipes HTTP/1.1
 content-type: application/json
 
@@ -94,7 +104,7 @@ content-type: application/json
     ]
 }
 
-### Updated contact 
+### Updated recipe 
 PUT https://recipe-book-project.onrender.com/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
 content-type: application/json
 
@@ -106,5 +116,27 @@ content-type: application/json
 #     "tags": ""
 # }
 
-### Delete contact 
+### Delete recipe 
 DELETE https://recipe-book-project.onrender.com/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
+
+
+### Create user 
+PUT http://localhost:8080/users HTTP/1.1
+content-type: application/json
+
+{
+    "userName": "Supper97",
+    "email": "supper97@gmail.com",
+    "password": "Soyou97!"
+}
+
+### Create user 
+DELETE http://localhost:8080/Sup12 HTTP/1.1
+content-type: application/json
+
+
+### Delete user
+PUT https://recipe-book-project.onrender.com/users/Sup12 HTTP/1.1
+
+### Delete user
+DELETE https://recipe-book-project.onrender.com/users/Sup12 HTTP/1.1

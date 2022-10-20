@@ -3,16 +3,16 @@ const router = express.Router();
 
 const recipesController = require('../controllers/recipesController');
 
-router.get('/', recipesController.getAllIDs);
+router.get('/', recipesController.getAllRecipes);
 
-router.get('/:id', recipesController.getSingleID);
+router.get('/:recipeName', recipesController.getSingleRecipe);
 
 // router.get('/:tags', recipesController.getRecipeByName)
 
 router.post('/', recipesController.createNewRecipe);
 
-router.put('/:id', recipesController.updateRecipe);
+router.put('/:recipeName', recipesController.updateRecipe);
 
-router.delete('/:id', recipesController. deleteRecipe);
+router.delete('/:recipeName', recipesController. deleteRecipe);
 
 module.exports = router;
