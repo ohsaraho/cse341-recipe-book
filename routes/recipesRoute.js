@@ -13,6 +13,6 @@ router.post('/', recipesController.createNewRecipe);
 
 router.put('/:recipeName', recipesController.updateRecipe);
 
-router.delete('/:recipeName', recipesController. deleteRecipe);
+router.delete('/:recipeName', recipesController.deleteRecipe);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 // Localhost
 ###
-GET http://localhost:8080/recipes
+GET http://localhost:8080/users
 ###
 GET http://localhost:8080/recipes/6349b6c12689d09aa05383f5
 ###

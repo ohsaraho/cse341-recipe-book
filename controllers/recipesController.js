@@ -1,12 +1,25 @@
-const mongodb = require('../db/connect');
+const db = require('../models');
+const Recipe = db.recipe;
+// const mongodb = require('../db/connect');
 // const ObjectId = require('mongodb').ObjectId;
+const passwordUtil = require('../validation/passwordCheck');
+const { userSchema } = require('../validation/schemaValidation');
 
 const getAllRecipes = async (req, res) => {
   try {
-    const result = await mongodb.getDb().db('recipes_project').collection('recipes').find();
-    result.toArray().then((documents) => {
-      res.json(documents);
-    });
+    // const result = await mongodb.getDb().db('recipes_project').collection('recipes').find();
+    // result.toArray().then((documents) => {
+    //   res.json(documents);
+    // });
+    Recipe.find({})
+      .then((data) => {
+        res.status(200).send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || 'Some error occurred while retrieving users.'
+        });
+      });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
