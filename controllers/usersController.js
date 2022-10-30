@@ -34,8 +34,7 @@ const getUserByName = async (req, res) => {
     }
 
     const userName = req.params.userName;
-    const result = await mongodb.getDb().db('recipes_project').collection('users').find({ userName: userName });
-    result.toArray().then((document) => {
+    User.find({ userName: userName }).then((document) => {
       res.json(document[0])
     });
   } catch (err) {
@@ -45,41 +44,36 @@ const getUserByName = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   try {
-
     if (!req.body.userName || !req.body.email || !req.body.password) {
       res.status(400).send({ message: 'Input can not be empty!' });
       return;
     }
-
-    const user = {
-      userName: req.body.userName,
-      email: req.body.email,
-      password: req.body.password
-    };
-
-    const schemaValidationCheck = await userSchema.validateAsync(user);
-    // console.log(schemaValidationCheck);
-
-    if (schemaValidationCheck.error) {
-      res.status(400).send({ message: schemaValidationCheck.error });
-      return;
-    }
-
     const password = req.body.password;
     const passwordCheck = passwordUtil.passwordPass(password);
-
     if (passwordCheck.error) {
       res.status(400).send({ message: passwordCheck.error });
       return;
     }
+    const user = new User(req.body);
+    // console.log(user);
+    // const schemaValidationCheck = await userSchema.validateAsync(user);
+    // console.log(schemaValidationCheck);
 
-    const response = await mongodb.getDb().db('recipes_project').collection('users').insertOne(user);
-
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'An error occurred while trying to create the user.');
-    }
+    // if (schemaValidationCheck.error) {
+    //   res.status(400).send({ message: schemaValidationCheck.error });
+    //   return;
+    // }
+    user
+      .save()
+      .then((data) => {
+        console.log(data);
+        res.status(201).send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || 'Some error occurred while creating the user.'
+        });
+      });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -87,48 +81,33 @@ const createNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-
-    if (!req.body.userName || !req.body.email || !req.body.password) {
-      res.status(400).send({ message: 'Input can not be empty!' });
+    const userName = req.params.userName;
+    if (!userName) {
+      res.status(400).send({ message: 'Invalid Username Supplied' });
       return;
     }
-
-    const userName = req.params.userName;
-
-    // if (!userName) {
-    //   res.status(400).send({ message: 'Username Invalid' });
-    //   return;
-    // }
-
-    const updateUserDoc = {
-      userName: req.body.userName,
-      email: req.body.email,
-      password: req.body.password
-    };
-    
-    // Changes just the favoriteColor // Use updateOne because it keeps the data that is already there and updates the new fields but replaceOne replaces the whole document
-    // The $set operator allows you to replace a field that you specified with that value
-    // let updateUserDoc = {
-    //   $set: { favoriteColor: "Green" }
-    // };
-
     const password = req.body.password;
     const passwordCheck = passwordUtil.passwordPass(password);
     if (passwordCheck.error) {
       res.status(400).send({ message: passwordCheck.error });
       return;
     }
-
-    const response = await mongodb.getDb().db('recipes_project').collection('users').replaceOne({ userName: userName }, updateUserDoc);
-
-    if (response.modifiedCount > 0) {
-      res.status(204).send();
-    } else {
-      res.status(500).json(response.error || 'An error occurred while trying to update the user.');
-    }
+    User.findOne({ userName: userName }, function (err, user) {
+      user.userName = req.body.userName;
+      user.email = req.body.email;
+      user.password = req.body.password;
+      user.save(function (err) {
+        if (err) {
+          res.status(500).json(err || 'Some error occurred while updating the user.');
+        } else {
+          res.status(204).send();
+        }
+      });
+    });
   } catch (err) {
     res.status(500).json(err);
   }
+  
 };
 
 
@@ -141,13 +120,19 @@ const deleteUser = async (req, res) => {
       return;
     }
 
-    const response = await mongodb.getDb().db('recipes_project').collection('users').deleteOne({ userName: userName }, true);
+    User.deleteOne({ userName: userName }, (err, result) =>  {
+      if (err) {
+        res.status(500).json(err || 'Some error occurred while deleting the user.');
+      } else {
+        res.status(204).send(result);
+      }
+    });
 
-    if (response.deletedCount > 0) {
-      res.status(200).send();
-    } else {
-      res.status(500).json(response.error || 'An error occurred while trying to delete the user.');
-    }
+    // if (response.deletedCount > 0) {
+    //   res.status(200).send();
+    // } else {
+    //   res.status(500).json(response.error || 'An error occurred while trying to delete the user.');
+    // }
   } catch (err) {
     res.status(500).json(err);
   }

@@ -1,3 +1,6 @@
+###
+GET https://dev-yro6uiy4hqgbw8pd.us.auth0.com/authorize
+
 // Localhost
 ###
 GET http://localhost:8080/users
