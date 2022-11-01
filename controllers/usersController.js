@@ -26,15 +26,15 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const getUserByName = async (req, res) => {
+const getUserByEmail = async (req, res) => {
   try {
 
-    if (!req.params.userName) {
-      res.status(400).json('Must use a valid username to find a user.');
+    if (!req.params.email) {
+      res.status(400).json('Must use a valid email to find a user.');
     }
 
-    const userName = req.params.userName;
-    User.find({ userName: userName }).then((document) => {
+    const email = req.params.email;
+    User.find({ email: email }).then((document) => {
       res.json(document[0])
     });
   } catch (err) {
@@ -81,9 +81,9 @@ const createNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const userName = req.params.userName;
-    if (!userName) {
-      res.status(400).send({ message: 'Invalid Username Supplied' });
+    const email = req.params.email;
+    if (!email) {
+      res.status(400).send({ message: 'Invalid email Supplied' });
       return;
     }
     const password = req.body.password;
@@ -92,10 +92,19 @@ const updateUser = async (req, res) => {
       res.status(400).send({ message: passwordCheck.error });
       return;
     }
-    User.findOne({ userName: userName }, function (err, user) {
+
+    User.findOne({ email: email }, function (err, user) {
       user.userName = req.body.userName;
       user.email = req.body.email;
       user.password = req.body.password;
+      // user.identifier = req.body.identifier;
+      // user.userName = req.body.userName;
+      // user.email = req.body.email;
+      // user.givenName = req.body.givenName;
+      // user.familyName = req.body.familyName;
+      // user.locale = req.body.locale;
+      // user.picture = req.body.picture;
+      // user.password = req.body.password;
       user.save(function (err) {
         if (err) {
           res.status(500).json(err || 'Some error occurred while updating the user.');
@@ -113,10 +122,10 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const userName = req.params.userName;
+    const email = req.params.email;
 
-    if (!userName) {
-      res.status(400).send({ message: 'Username Invalid' });
+    if (!email) {
+      res.status(400).send({ message: 'Email Invalid' });
       return;
     }
 
@@ -138,4 +147,4 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUserByName, createNewUser, updateUser, deleteUser };
+module.exports = { getAllUsers, getUserByEmail, createNewUser, updateUser, deleteUser };
