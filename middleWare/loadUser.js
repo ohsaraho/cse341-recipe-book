@@ -8,7 +8,7 @@ const User = db.user;
 
 const loadUser = async (req, res, next) => {
   // console.log(req.headers.authorization);
-  const authZeroUser = fetchAuthZeroUser(req.headers.authorization);
+  const authZeroUser = await fetchAuthZeroUser(req.headers.authorization);
   // const authZeroUser = req.headers.authorization;
 
   const user = await findOrCreateUser(authZeroUser);
@@ -45,7 +45,7 @@ const findOrCreateUser = async (authZeroUserJson) => {
   if (existingUser) return existingUser;
 
   // const user = new User(req.body);
-  const newUser = await User.save({
+  const newUser = await User.create({
     identifier: authZeroUserJson.sub,
     email: authZeroUserJson.email,
     givenName: authZeroUserJson.given_name,
