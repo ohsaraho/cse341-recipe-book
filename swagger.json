@@ -10,6 +10,15 @@
   "schemes": [
     "https"
   ],
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Authentication token (Bearer)",
+      "example": "Bearer <your token>"
+    }
+  },
   "paths": {
     "/recipes/": {
       "get": {
@@ -65,12 +74,12 @@
         }
       }
     },
-    "/recipes/{recipeName}": {
+    "/recipes/{tags}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "recipeName",
+            "name": "tags",
             "in": "path",
             "required": true,
             "type": "string"
@@ -80,14 +89,13 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "500": {
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/recipes/{recipeName}": {
       "put": {
         "description": "",
         "parameters": [
@@ -145,8 +153,8 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -279,8 +287,8 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -314,6 +322,22 @@
           }
         }
       }
+    },
+    "/userRecipes/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Authorization": []
+    }
+  ]
 }

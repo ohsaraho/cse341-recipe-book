@@ -6,5 +6,6 @@ router.use('/recipes', require('./recipesRoute'));
 router.use('/users', require('./usersRoute'));
 // router.use('/authorization', require('./authorizationRoute'));
 router.use('/authorization', require('./authorization'));
+router.use('/userRecipes', require('./userRecipesRoute'));
 
 module.exports = router;

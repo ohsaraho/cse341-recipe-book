@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-const loadUser = require("../middleWare/loadUser")
+// const loadUser = require("../middleWare/loadUser")
 const recipesController = require('../controllers/recipesController');
 
-router.use([loadUser]);
+// router.use([loadUser]);
 
 // router.get("/", recipesController.getFavoriteRecipe);
 
 
 router.get('/', recipesController.getAllRecipes);
 
-router.get('/:recipeName', recipesController.getSingleRecipe);
+router.get('/:tags', recipesController.getSingleRecipe);
 
 // router.get('/:tags', recipesController.getRecipeByName)
 

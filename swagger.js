@@ -7,6 +7,20 @@ const doc = {
   },
   host: 'recipe-book-project.onrender.com',
   schemes: ['https'],
+  securityDefinitions: {
+    Authorization: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header",
+      description: "Authentication token (Bearer)",
+      example: "Bearer <your token>",
+    },
+  },
+  security: [
+    {
+      Authorization: [],
+    },
+  ],
 };
 
 

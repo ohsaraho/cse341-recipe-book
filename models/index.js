@@ -1,5 +1,5 @@
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 // const mongoose = require('mongoose');
 // mongoose.Promise = global.Promise;
@@ -14,13 +14,13 @@ dotenv.config();
 
 // const dbConfig = require('../config/db.config.js');
 
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// const mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
 
-const db = {};
-db.mongoose = mongoose;
-db.url = process.env.DB_CONNECTION_STRING;
-db.recipe = require('./recipe.js')(mongoose);
-db.user = require('./user.js')(mongoose);
+// const db = {};
+// db.mongoose = mongoose;
+// db.url = process.env.DB_CONNECTION_STRING;
+// db.recipe = require('./recipe.js')(mongoose);
+// db.user = require('./user.js')(mongoose);
 
-module.exports = db;
+// module.exports = db;

@@ -3,8 +3,10 @@
 // dotenv.config();
 const config = require("../config/OAuth");
 // const User = require("../models/user");
-const db = require('../models');
-const User = db.user;
+// const db = require('../models');
+// const User = db.user;
+
+const User = require('../models/user');
 
 const loadUser = async (req, res, next) => {
   // console.log(req.headers.authorization);
@@ -14,6 +16,7 @@ const loadUser = async (req, res, next) => {
   const user = await findOrCreateUser(authZeroUser);
 
   console.log(user);
+  // req.user = user;
   // console.log(authZeroUser);
   next();
 };

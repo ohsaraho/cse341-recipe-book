@@ -5,6 +5,8 @@ GET https://dev-yro6uiy4hqgbw8pd.us.auth0.com/authorize
 ###
 GET http://localhost:8080/users
 ###
+GET http://localhost:8080/users/supper12@gmail.com
+###
 GET http://localhost:8080/recipes/6349b6c12689d09aa05383f5
 ###
 GET http://localhost:8080/recipes/6349b6c12689d09aa05383f5
@@ -39,16 +41,60 @@ POST http://localhost:8080/recipes HTTP/1.1
 content-type: application/json
 
 {
-    "recipeName": "",
-    "ingredients": "",
-    "instructions": "",
-    "prepareTime": "",
-    "tags": ""
+"recipeName": "Homemade Spaghetti Sauce Testing",
+  "ingredients": [
+    {
+      "quantity": "6",
+      "name": "tomato sauce",
+      "type": "Vegetable/Fruit"
+    },
+    {
+      "quantity": "2 Tbsp",
+      "name": "cane sugar",
+      "type": "Drinks"
+    },
+    {
+      "quantity": "1 cup",
+      "name": "water",
+      "type": "Drinks"
+    },
+    {
+      "quantity": "2 tsp",
+      "name": "parsley flakes",
+      "type": "Seasoning"
+    }
+  ],
+  "instructions": [
+    "Add all healthy ingredients into a medium pot and whisk together until combined.",
+    "Cook for 5 minutes on medium heat.",
+    "Serve on spaghetti pasta or your favorite kind of pasta."
+  ],
+  "prepareTime": "30 minutes",
+  "tags": [
+    "vegetarian",
+    "vegan",
+    "Italian"
+  ]
 }
 
+# {
+#     "recipeName": "",
+#     "ingredients": "",
+#     "instructions": "",
+#     "prepareTime": "",
+#     "tags": ""
+# }
+
 ### Updated recipe 
-PUT http://localhost:8080/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
+PUT http://localhost:8080/users/nowIt@gmail.com HTTP/1.1
 content-type: application/json
+
+
+{
+  "password": "nowItworks24!",  
+  "userName": "IthinkItIsWorkingNow",
+  "email": "nowIt24@gmail.com",
+}
 
 # {
 #     "recipeName": "",

@@ -1,6 +1,6 @@
 const { user } = require('../models');
-const db = require('../models');
-const Recipe = db.recipe;
+const Recipe = require('../models/recipe');
+// const Recipe = db.recipe;
 // const mongodb = require('../db/connect');
 // const ObjectId = require('mongodb').ObjectId;
 const passwordUtil = require('../validation/passwordCheck');
@@ -31,35 +31,35 @@ const getAllRecipes = async (req, res) => {
   }
 };
 
-const getSingleRecipe = async (req, res) => {
-  try {
-
-    if (!req.params.recipeName) {
-      res.status(400).json('Must use a valid recipe name to find a recipe.');
-      return;
-    }
-
-    const recipeName = req.params.recipeName;
-    User.find({ recipeName: recipeName }).then((document) => {
-      res.json(document[0])
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
-
-// you can only have one get by id, name or tag; not multiple
-// const getRecipeByName= async (req, res) => {
+// const getSingleRecipe = async (req, res) => {
 //   try {
-//     const tags = req.params.tags;
-//     const result = await mongodb.getDb().db('recipes_project').collection('recipes').find({ tags: tags });
-//     result.toArray().then((data) => {
-//       res.json(data[0])
+
+//     if (!req.params.recipeName) {
+//       res.status(400).json('Must use a valid recipe name to find a recipe.');
+//       return;
+//     }
+
+//     const recipeName = req.params.recipeName;
+//     Recipe.find({ recipeName: recipeName }).then((document) => {
+//       res.json(document[0])
 //     });
 //   } catch (err) {
 //     res.status(500).json(err);
 //   }
 // };
+
+// you can only have one get by id, name or tag; not multiple
+const getSingleRecipe = async (req, res) => {
+
+  try {
+    const tags = req.params.tags;
+    Recipe.find({ tags: tags }).then((data) => {
+      res.json(data[0])
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
 const createNewRecipe = async (req, res) => {
   try {
@@ -162,7 +162,7 @@ const deleteRecipe = async (req, res) => {
       if (err) {
         res.status(500).json(err || 'Some error occurred while deleting the recipe.');
       } else {
-        res.status(204).send(result);
+        res.status(200).send(result);
       }
     });
   } catch (err) {

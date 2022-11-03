@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const ingredientSchema = new Schema({
   quantity: { type: String, required: true },
@@ -6,30 +6,110 @@ const ingredientSchema = new Schema({
   type: { type: String, required: true },
 });
 
-module.exports = (mongoose) => {
-    const recipeSchema = mongoose.model(
-      'recipes',
-      mongoose.Schema({
-        recipeName: {
-          type: String
-        },
-        ingredients: {
-          type: [ingredientSchema]
-        },
-        instructions: {
-          type: [String]
-        },
-        prepareTime: {
-            type: String
-        },
-        tags: {
-          type: [String]
-        }
-      })
-    );
+// const userRecipeSchema = new Schema({
+//   recipeName: {
+//     type: String
+//   },
+//   ingredients: {
+//     type: [ingredientSchema]
+//   },
+//   instructions: {
+//     type: [String]
+//   },
+//   prepareTime: {
+//       type: String
+//   },
+//   tags: {
+//     type: [String]
+//   },
+// });
+
+const recipeSchema = new Schema({
+  recipeName: {
+    type: String
+  },
+  ingredients: {
+    type: [ingredientSchema]
+  },
+  instructions: {
+    type: [String]
+  },
+  prepareTime: {
+      type: String
+  },
+  tags: {
+    type: [String]
+  },
+});
+
+// module.exports = userRecipeSchema;
+
+module.exports = model("recipes", recipeSchema);
+
+
+// const { Schema } = require('mongoose');
+
+// const ingredientSchema = new Schema({
+//   quantity: { type: String, required: true },
+//   name: { type: String, required: true },
+//   type: { type: String, required: true },
+// });
+
+// module.exports = (mongoose) => {
+//     const recipeSchema = mongoose.model(
+//       'recipes',
+//       mongoose.Schema({
+//         recipeName: {
+//           type: String
+//         },
+//         ingredients: {
+//           type: [ingredientSchema]
+//         },
+//         instructions: {
+//           type: [String]
+//         },
+//         prepareTime: {
+//             type: String
+//         },
+//         tags: {
+//           type: [String]
+//         }
+//       })
+//     );
   
-    return recipeSchema;
-  };
+//     return recipeSchema;
+//   };
+
+
+  // const { Schema } = require('mongoose');
+
+  // const ingredientSchema = new Schema({
+  //   quantity: { type: String, required: true },
+  //   name: { type: String, required: true },
+  //   type: { type: String, required: true },
+  // });
+  
+  // module.exports = (mongoose) => {
+  //     const recipeSchema = mongoose.Schema({
+  //         recipeName: {
+  //           type: String
+  //         },
+  //         ingredients: {
+  //           type: [ingredientSchema]
+  //         },
+  //         instructions: {
+  //           type: [String]
+  //         },
+  //         prepareTime: {
+  //             type: String
+  //         },
+  //         tags: {
+  //           type: [String]
+  //         }
+  //       });
+    
+  //       return mongoose.model('recipes', recipeSchema);
+  //   };  
 
 // const { Schema, model } = require("mongoose");
 

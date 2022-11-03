@@ -1,5 +1,5 @@
-const db = require('../models');
-const User = db.user;
+const User = require('../models/user');
+// const User = db.user;
 // const mongodb = require('../db/connect');
 // const ObjectId = require('mongodb').ObjectId;
 const passwordUtil = require('../validation/passwordCheck');
@@ -133,7 +133,7 @@ const deleteUser = async (req, res) => {
       if (err) {
         res.status(500).json(err || 'Some error occurred while deleting the user.');
       } else {
-        res.status(204).send(result);
+        res.status(200).send(result);
       }
     });
 

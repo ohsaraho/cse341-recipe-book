@@ -1,5 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+dotenv.config();
 // const mongodb = require('./db/connect');
 
 const port = process.env.PORT || 8080;
@@ -25,8 +28,7 @@ app
 //   }
 // });
 
-const db = require('./models');
-db.mongoose
+mongoose
   .connect(process.env.DB_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true
