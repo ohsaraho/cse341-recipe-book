@@ -4,7 +4,7 @@ const getFavoriteRecipe = {
             return res.status(401).send("Not Authenticated");
           }
         res.json(req.user.favoriteRecipe);
-        // console.log("What is happening")
+        // console.log("What is happening", req.user);
     },
 };
 

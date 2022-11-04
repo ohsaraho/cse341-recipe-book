@@ -9,16 +9,25 @@ const config = require("../config/OAuth");
 const User = require('../models/user');
 
 const loadUser = async (req, res, next) => {
-  // console.log(req.headers.authorization);
-  const authZeroUser = await fetchAuthZeroUser(req.headers.authorization);
-  // const authZeroUser = req.headers.authorization;
+  try {
+    // console.log(req.headers.authorization);
 
-  const user = await findOrCreateUser(authZeroUser);
+    if (!req.headers.authorization) next();
 
-  console.log(user);
-  req.user = user;
-  // console.log(authZeroUser);
-  next();
+    // const token = parseToken(req);
+
+    const authZeroUser = await fetchAuthZeroUser(req.headers.authorization);
+    // const authZeroUser = req.headers.authorization;
+
+    const user = await findOrCreateUser(authZeroUser);
+
+    console.log(user);
+    req.user = user;
+    // console.log(authZeroUser);
+    next();
+  } catch (_error) {
+      next();
+  }
 };
 
 const fetchAuthZeroUser = async (authorizationValue) => {
