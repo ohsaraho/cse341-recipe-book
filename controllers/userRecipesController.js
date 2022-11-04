@@ -1,12 +1,10 @@
-const User = require('../models/user');
-
 const getFavoriteRecipe = {
     index: (req, res) => {
-        // if (!req.user) {
-        //     return res.status(401).send("Not Authenticated");
-        //   }
+        if (!req.user) {
+            return res.status(401).send("Not Authenticated");
+          }
         res.json(req.user.favoriteRecipe);
-        console.log("What is happening")
+        // console.log("What is happening")
     },
 };
 

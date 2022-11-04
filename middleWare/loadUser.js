@@ -16,7 +16,7 @@ const loadUser = async (req, res, next) => {
   const user = await findOrCreateUser(authZeroUser);
 
   console.log(user);
-  // req.user = user;
+  req.user = user;
   // console.log(authZeroUser);
   next();
 };
