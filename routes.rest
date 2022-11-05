@@ -7,11 +7,6 @@ GET http://localhost:8080/users
 ###
 GET http://localhost:8080/users/supper12@gmail.com
 ###
-GET http://localhost:8080/recipes/6349b6c12689d09aa05383f5
-###
-GET http://localhost:8080/recipes/6349b6c12689d09aa05383f5
-###
-GET http://localhost:8080/recipes/6349b6c12689d09aa05383f5
 
 
 // Render
@@ -41,49 +36,43 @@ POST http://localhost:8080/recipes HTTP/1.1
 content-type: application/json
 
 {
-"recipeName": "Homemade Spaghetti Sauce Testing",
-  "ingredients": [
-    {
-      "quantity": "6",
-      "name": "tomato sauce",
-      "type": "Vegetable/Fruit"
-    },
-    {
-      "quantity": "2 Tbsp",
-      "name": "cane sugar",
-      "type": "Drinks"
-    },
-    {
-      "quantity": "1 cup",
-      "name": "water",
-      "type": "Drinks"
-    },
-    {
-      "quantity": "2 tsp",
-      "name": "parsley flakes",
-      "type": "Seasoning"
-    }
-  ],
-  "instructions": [
-    "Add all healthy ingredients into a medium pot and whisk together until combined.",
-    "Cook for 5 minutes on medium heat.",
-    "Serve on spaghetti pasta or your favorite kind of pasta."
-  ],
-  "prepareTime": "30 minutes",
-  "tags": [
-    "vegetarian",
-    "vegan",
-    "Italian"
-  ]
+"recipeName": "Pineapple Smoothie",
+    "ingredients": [
+      {
+        "quantity": "1 cup",
+        "name": "almond milk or oatmilk",
+        "type": "Drinks"
+      },
+      {
+        "quantity": "2 medium",
+        "name": "bananas (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "3 cup",
+        "name": "pineapple (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "1 T",
+        "name": "maple syrup or honey",
+        "type": "Sweetener"
+      }
+    ],
+    "instructions": [
+      "Add all ingredients into a blender.",
+      "Blend on low for about 20 seconds, and then turn up speed to medium high until the mixture is smooth.",
+      "Add extra sweetener or milk if needed.",
+      "Optional: add a cup or more of spinach"
+    ],
+    "prepareTime": "5 minutes",
+    "tags": [
+      "breakfast",
+      "dessert",
+      "vegan",
+      "dairy free"
+    ]
 }
-
-# {
-#     "recipeName": "",
-#     "ingredients": "",
-#     "instructions": "",
-#     "prepareTime": "",
-#     "tags": ""
-# }
 
 ### Updated recipe 
 PUT http://localhost:8080/users/nowIt@gmail.com HTTP/1.1
@@ -107,68 +96,6 @@ content-type: application/json
 ### Delete recipe 
 DELETE http://localhost:8080/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
 
-
-
-// Render
-### Create recipe 
-POST https://recipe-book-project.onrender.com/recipes HTTP/1.1
-content-type: application/json
-
-{
-    "recipeName": "Blueberry Smoothie",
-    "ingredients": [
-        {
-            "quantity": "1 cup",
-            "name": "almond milk or oatmilk",
-            "type": "Drinks"
-        },
-        {
-            "quantity": "2 medium",
-            "name": "bananas (frozen)",
-            "type": "Fruit"
-        },
-        {
-            "quantity": "3 cup",
-            "name": "blueberries (frozen)",
-            "type": "Fruit"
-        },
-        {
-            "quantity": "1 T",
-            "name": "maple syrup or honey",
-            "type": "Sweetener"
-        }
-    ],
-    "instructions": [
-        "Add all ingredients into a blender.",
-        "Blend on low for about 20 seconds, and then turn up speed to medium high until the mixture is smooth.",
-        "Add extra sweetener or milk if needed.",
-        "Optional: add a cup or more of spinach"
-    ],
-    "prepareTime": "5 minutes",
-    "tags": [
-        "breakfast",
-        "dessert",
-        "vegan",
-        "dairy free"
-    ]
-}
-
-### Updated recipe 
-PUT https://recipe-book-project.onrender.com/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
-content-type: application/json
-
-# {
-#     "recipeName": "",
-#     "ingredients": "",
-#     "instructions": "",
-#     "prepareTime": "",
-#     "tags": ""
-# }
-
-### Delete recipe 
-DELETE https://recipe-book-project.onrender.com/recipes/6349b6c12689d09aa05383f5 HTTP/1.1
-
-
 ### Create user 
 PUT http://localhost:8080/users HTTP/1.1
 content-type: application/json
@@ -179,13 +106,132 @@ content-type: application/json
     "password": "Soyou97!"
 }
 
-### Create user 
-DELETE http://localhost:8080/Sup12 HTTP/1.1
+
+// Render
+### Get recipes
+GET https://recipe-book-project.onrender.com/recipes HTTP/1.1
+
+### Get recipes
+GET https://recipe-book-project.onrender.com/recipes/Pineapple Smoothie HTTP/1.1
+
+
+### Create recipe 
+POST https://recipe-book-project.onrender.com/recipes HTTP/1.1
 content-type: application/json
 
+{
+"recipeName": "Pineapple Smoothie",
+    "ingredients": [
+      {
+        "quantity": "1 cup",
+        "name": "almond milk or oatmilk",
+        "type": "Drinks"
+      },
+      {
+        "quantity": "2 medium",
+        "name": "bananas (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "3 cup",
+        "name": "pineapple (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "1 T",
+        "name": "maple syrup or honey",
+        "type": "Sweetener"
+      }
+    ],
+    "instructions": [
+      "Add all ingredients into a blender.",
+      "Blend on low for about 20 seconds, and then turn up speed to medium high until the mixture is smooth.",
+      "Add extra sweetener or milk if needed.",
+      "Optional: add a cup or more of spinach"
+    ],
+    "prepareTime": "5 minutes",
+    "tags": [
+      "breakfast",
+      "dessert",
+      "vegan",
+      "dairy free"
+    ]
+}
+
+
+### Updated recipe 
+PUT https://recipe-book-project.onrender.com/recipes/Pineapple Smoothie HTTP/1.1
+content-type: application/json
+
+{
+"recipeName": "Pineapple Smoothie1",
+    "ingredients": [
+      {
+        "quantity": "1 cup",
+        "name": "almond milk or oatmilk",
+        "type": "Drinks"
+      },
+      {
+        "quantity": "2 medium",
+        "name": "bananas (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "3 cup",
+        "name": "pineapple (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "1 T",
+        "name": "maple syrup or honey",
+        "type": "Sweetener"
+      }
+    ],
+    "instructions": [
+      "Add all ingredients into a blender.",
+      "Blend on low for about 25 seconds, and then turn up speed to medium high until the mixture is smooth.",
+      "Add extra sweetener or milk if needed.",
+      "Optional: add a cup or more of spinach"
+    ],
+    "prepareTime": "5 minutes",
+    "tags": [
+      "breakfast",
+      "dessert",
+      "vegan"
+    ]
+}
+
+
+### Delete recipe 
+DELETE https://recipe-book-project.onrender.com/recipes/Pineapple Smoothie HTTP/1.1
+
+
+
+
+### Get user
+GET https://recipe-book-project.onrender.com/users HTTP/1.1
+content-type: application/json
+
+### Create user 
+POST https://recipe-book-project.onrender.com/users HTTP/1.1
+content-type: application/json
+
+{
+    "userName": "sarahTest",
+    "email": "sarahTest97@gmail.com",
+    "password": "sarahTest97!"
+}
+
+### Update user
+PUT https://recipe-book-project.onrender.com/users/sarahTest97@gmail.com HTTP/1.1
+content-type: application/json
+
+{
+    "userName": "sarahTest1",
+    "email": "sarahTest971@gmail.com",
+    "password": "sarahTest971!"
+}
 
 ### Delete user
-PUT https://recipe-book-project.onrender.com/users/Sup12 HTTP/1.1
-
-### Delete user
-DELETE https://recipe-book-project.onrender.com/users/Sup12 HTTP/1.1
+DELETE https://recipe-book-project.onrender.com/users/sarahTest97@gmail.com HTTP/1.1
+content-type: application/json

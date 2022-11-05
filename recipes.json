@@ -1,8 +1,8 @@
 {
-    "recipeName": "Homemade Spaghetti Sauce",
+    "recipeName": "Homemade Stuffed Shells",
     "ingredients": [
         {
-            "quantity": "6",
+            "quantity": "6 8oz cans",
             "name": "tomato sauce",
             "type": "Vegetable/Fruit"
         },
@@ -45,17 +45,115 @@
             "quantity": "1 tsp",
             "name": "salt",
             "type": "Seasoning"
+        },
+        {
+            "quantity": "1 pck",
+            "name": "Barilla Jumbo Shells",
+            "type": "Pasta"
+        },
+        {
+            "quantity": "1 cup",
+            "name": "cheddar cheese",
+            "type": "Cheese"
+        },
+        {
+            "quantity": "1 cup",
+            "name": "mozzarella cheese",
+            "type": "Cheese"
         }
     ],
     "instructions": [
-        "Add all ingredients into a medium pot and whisk together until combined.",
+        "Add all tomato sauce and seasoning into a medium pot and whisk together until combined.",
         "Cook for 5 minutes on medium heat.",
-        "Serve on spaghetti pasta or your favorite kind of pasta."
+        "Cook noodles as directed on the box.",
+        "Drain pasta and rinse of with cold water.",
+        "Grade both cheeses and put aside",
+        "9X13 casserole dish with a thin layer of sauce on the bottom",
+        "Stuff shells with 1/2 Tbsp of cheese",
+        "Pour sauce on top and bake for 20 minutes on 350F",
+        "Cool down then serve"
     ],
-    "prepareTime": "15 minutes",
+    "prepareTime": "1 hour",
+    "tags": [
+        "dinner",
+        "pasta",
+        "vegetarian"
+    ],
+    "recipeName": "Hash Browns",
+    "ingredients": [
+        {
+            "quantity": "1 lb",
+            "name": "potatoes",
+            "type": "Vegetable"
+        },
+        {
+            "quantity": "1/4 tsp",
+            "name": "onion granules",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1/4 tsp",
+            "name": "garlic granules",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1/4 tsp",
+            "name": "salt",
+            "type": "Seasoning"
+        },
+        {
+            "quantity": "1/4 tsp",
+            "name": "black pepper",
+            "type": "Seasoning"
+        }
+    ],
+    "instructions": [
+        "Wash potatoes then wrap the potatoes indvidually in tin foil. Bake potatoes on 400F for about an hour or until fork inserts smooth. ",
+        "Cool the potatoes over night unwrapped.",
+        "Grade potatoes and fry in a pan or grill with oil.",
+        "Add seasoning to taste and cook until light brown then serve while hot."
+    ],
+    "prepareTime": "30 minutes",
     "tags": [
         "breakfast",
-        "dessert",
-        "vegan"
+        "potatoes",
+        "vegan",
+        "hashbrowns"
+    ],
+    "recipeName": "Pineapple Smoothie",
+    "ingredients": [
+      {
+        "quantity": "1 cup",
+        "name": "almond milk or oatmilk",
+        "type": "Drinks"
+      },
+      {
+        "quantity": "2 medium",
+        "name": "bananas (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "3 cup",
+        "name": "pineapple (frozen)",
+        "type": "Fruit"
+      },
+      {
+        "quantity": "1 T",
+        "name": "maple syrup or honey",
+        "type": "Sweetener"
+      }
+    ],
+    "instructions": [
+      "Add all ingredients into a blender.",
+      "Blend on low for about 20 seconds, and then turn up speed to medium high until the mixture is smooth.",
+      "Add extra sweetener or milk if needed.",
+      "Optional: add a cup or more of spinach"
+    ],
+    "prepareTime": "5 minutes",
+    "tags": [
+      "breakfast",
+      "dessert",
+      "vegan",
+      "dairy free"
     ]
 }
