@@ -11,7 +11,7 @@ const recipesController = require('../controllers/recipesController');
 
 router.get('/', recipesController.getAllRecipes);
 
-router.get('/:tags', recipesController.getSingleRecipe);
+router.get('/:recipeName', recipesController.getSingleRecipe);
 
 // router.get('/:tags', recipesController.getRecipeByName)
 

@@ -74,12 +74,12 @@
         }
       }
     },
-    "/recipes/{tags}": {
+    "/recipes/{recipeName}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "tags",
+            "name": "recipeName",
             "in": "path",
             "required": true,
             "type": "string"
@@ -89,13 +89,14 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/recipes/{recipeName}": {
+      },
       "put": {
         "description": "",
         "parameters": [
@@ -195,6 +196,9 @@
                 },
                 "password": {
                   "example": "any"
+                },
+                "favoriteRecipe": {
+                  "example": "any"
                 }
               }
             }
@@ -251,13 +255,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "password": {
-                  "example": "any"
-                },
-                "userName": {
-                  "example": "any"
-                },
-                "email": {
+                "favoriteRecipe": {
                   "example": "any"
                 }
               }

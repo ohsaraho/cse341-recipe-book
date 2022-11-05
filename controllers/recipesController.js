@@ -1,22 +1,18 @@
 const { user } = require('../models');
 const Recipe = require('../models/recipe');
-// const Recipe = db.recipe;
-// const mongodb = require('../db/connect');
-// const ObjectId = require('mongodb').ObjectId;
-const passwordUtil = require('../validation/passwordCheck');
-const { userSchema } = require('../validation/schemaValidation');
 
-const getFavoriteRecipe = async (req, res) => {
-    res.json(req.user.favoriteRecipe);
-  };
+// const getFavoriteRecipe = {
+//   index: (req, res) => {
+//       if (!req.user) {
+//           return res.status(401).send("Not Authenticated");
+//         }
+//       res.json(req.user.favoriteRecipe);
+//   },
+// };
 
 
 const getAllRecipes = async (req, res) => {
   try {
-    // const result = await mongodb.getDb().db('recipes_project').collection('recipes').find();
-    // result.toArray().then((documents) => {
-    //   res.json(documents);
-    // });
     Recipe.find({})
       .then((data) => {
         res.status(200).send(data);
@@ -52,8 +48,14 @@ const getAllRecipes = async (req, res) => {
 const getSingleRecipe = async (req, res) => {
 
   try {
-    const tags = req.params.tags;
-    Recipe.find({ tags: tags }).then((data) => {
+    const recipeName = req.params.recipeName;
+
+    if (!recipeName) {
+      res.status(400).json('Must use a valid recipe name to find a recipe.');
+      return;
+    }
+
+    Recipe.find({ recipeName: recipeName }).then((data) => {
       res.json(data[0])
     });
   } catch (err) {
@@ -69,13 +71,6 @@ const createNewRecipe = async (req, res) => {
       return;
     }
 
-    // const recipe = {
-    //   recipeName: req.body.recipeName,
-    //   ingredients: req.body.ingredients,
-    //   instructions: req.body.instructions,
-    //   prepareTime: req.body.prepareTime,
-    //   tags: req.body.tags
-    // };
     const recipe = new Recipe(req.body);
 
     recipe.save().then((data) => {
@@ -100,26 +95,6 @@ const updateRecipe = async (req, res) => {
       return;
     }
     const recipeName = req.params.recipeName;
-
-    // if (!recipeName) {
-    //   res.status(400).send({ message: 'Recipe Name Invalid' });
-    //   return;
-    // }
-
-    // const updaterecipeDoc = {
-    //   recipeName: req.body.recipeName,
-    //   ingredients: req.body.ingredients,
-    //   instructions: req.body.instructions,
-    //   prepareTime: req.body.prepareTime,
-    //   tags: req.body.tags
-
-    // };
-    
-    // Changes just the favoriteColor // Use updateOne because it keeps the data that is already there and updates the new fields but replaceOne replaces the whole document
-    // The $set operator allows you to replace a field that you specified with that value
-    // let updaterecipeDoc = {
-    //   $set: { favoriteColor: "Green" }
-    // };
 
     Recipe.findOne({ recipeName: recipeName }, function (err, recipe) {
       recipe.recipeName = req.body.recipeName;
@@ -147,10 +122,8 @@ const updateRecipe = async (req, res) => {
   }
 };
 
-
 const deleteRecipe = async (req, res) => {
   try {
-
     const recipeName = req.params.recipeName;
 
     if (!recipeName) {
@@ -165,10 +138,34 @@ const deleteRecipe = async (req, res) => {
         res.status(200).send(result);
       }
     });
+
   } catch (err) {
     res.status(500).json(err);
   }
 };
+
+
+// const deleteRecipe = async (req, res) => {
+//   try {
+
+//     const recipeName = req.params.recipeName;
+
+//     if (!recipeName) {
+//       res.status(400).send({ message: 'Recipe Name Invalid' });
+//       return;
+//     }
+
+//     Recipe.deleteOne({ recipeName: recipeName }, (err, result) =>  {
+//       if (err) {
+//         res.status(500).json(err || 'Some error occurred while deleting the recipe.');
+//       } else {
+//         res.status(200).send(result);
+//       }
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// };
 
 module.exports = { getAllRecipes, getSingleRecipe, createNewRecipe, updateRecipe, deleteRecipe };
 // getFavoriteRecipe,

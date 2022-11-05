@@ -3,7 +3,9 @@ const Recipe = require("./userRecipeSchema");
 
 const userSchema = new Schema({
   identifier: { type: String, unique: true },
+  userName: { type: String },
   email: { type: String, unique: true },
+  password: { type: String },
   givenName: { type: String },
   familyName: { type: String },
   locale: { type: String },

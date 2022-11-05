@@ -1,10 +1,4 @@
-// const appConfig = require("../config/app");
-// const dotenv = require('dotenv');
-// dotenv.config();
 const config = require("../config/OAuth");
-// const User = require("../models/user");
-// const db = require('../models');
-// const User = db.user;
 
 const User = require('../models/user');
 
@@ -56,7 +50,6 @@ const findOrCreateUser = async (authZeroUserJson) => {
 
   if (existingUser) return existingUser;
 
-  // const user = new User(req.body);
   const newUser = await User.create({
     identifier: authZeroUserJson.sub,
     email: authZeroUserJson.email,
@@ -72,11 +65,9 @@ const findOrCreateUser = async (authZeroUserJson) => {
 
 
 
-const parseToken = (req) => {
-  // Parse out the token. The token is in the Authorization header like this:
-  // Authorization: Bearer <token>
+// const parseToken = (req) => {
 
-  return req.headers.authorization.split(" ")[1];
-};
+//   return req.headers.authorization.split(" ")[1];
+// };
 
 module.exports = loadUser;

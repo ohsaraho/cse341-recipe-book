@@ -1,17 +1,10 @@
 const User = require('../models/user');
-// const User = db.user;
-// const mongodb = require('../db/connect');
-// const ObjectId = require('mongodb').ObjectId;
 const passwordUtil = require('../validation/passwordCheck');
-const { userSchema } = require('../validation/schemaValidation');
+// const { userSchema } = require('../validation/schemaValidation');
 
 
 const getAllUsers = async (req, res) => {
   try {
-    // const result = await mongodb.getDb().db('recipes_project').collection('users').find();
-    // result.toArray().then((documents) => {
-    //   res.json(documents);
-    // });
     User.find({})
       .then((data) => {
         res.status(200).send(data);
@@ -44,7 +37,7 @@ const getUserByEmail = async (req, res) => {
 
 const createNewUser = async (req, res) => {
   try {
-    if (!req.body.userName || !req.body.email || !req.body.password) {
+    if (!req.body.userName || !req.body.email || !req.body.password || !req.body.favoriteRecipe) {
       res.status(400).send({ message: 'Input can not be empty!' });
       return;
     }
@@ -86,17 +79,16 @@ const updateUser = async (req, res) => {
       res.status(400).send({ message: 'Invalid email Supplied' });
       return;
     }
-    const password = req.body.password;
-    const passwordCheck = passwordUtil.passwordPass(password);
-    if (passwordCheck.error) {
-      res.status(400).send({ message: passwordCheck.error });
-      return;
-    }
+    
+    // const password = req.body.password;
+    // const passwordCheck = passwordUtil.passwordPass(password);
+    // if (passwordCheck.error) {
+    //   res.status(400).send({ message: passwordCheck.error });
+    //   return;
+    // }
 
     User.findOne({ email: email }, function (err, user) {
-      user.userName = req.body.userName;
-      user.email = req.body.email;
-      user.password = req.body.password;
+      user.favoriteRecipe = req.body.favoriteRecipe;
       // user.identifier = req.body.identifier;
       // user.userName = req.body.userName;
       // user.email = req.body.email;
@@ -129,7 +121,7 @@ const deleteUser = async (req, res) => {
       return;
     }
 
-    User.deleteOne({ userName: userName }, (err, result) =>  {
+    User.deleteOne({ email: email }, (err, result) =>  {
       if (err) {
         res.status(500).json(err || 'Some error occurred while deleting the user.');
       } else {
