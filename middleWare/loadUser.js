@@ -8,7 +8,7 @@ const loadUser = async (req, res, next) => {
 
     if (!req.headers.authorization) next();
 
-    // const token = parseToken(req);
+    const token = parseToken(req);
 
     const authZeroUser = await fetchAuthZeroUser(req.headers.authorization);
     // const authZeroUser = req.headers.authorization;
@@ -65,9 +65,9 @@ const findOrCreateUser = async (authZeroUserJson) => {
 
 
 
-// const parseToken = (req) => {
+const parseToken = (req) => {
 
-//   return req.headers.authorization.split(" ")[1];
-// };
+  return req.headers.authorization.split(" ")[1];
+};
 
 module.exports = loadUser;

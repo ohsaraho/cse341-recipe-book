@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 dotenv.config();
-// const mongodb = require('./db/connect');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -19,14 +18,6 @@ app
   })
   .use('/', require('./routes'));
 
-// mongodb.initDb((err, mongodb) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     app.listen(port);
-//     console.log(`Connected to DB and listening on ${port}`);
-//   }
-// });
 
 mongoose
   .connect(process.env.DB_CONNECTION_STRING, {
