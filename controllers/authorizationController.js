@@ -14,7 +14,7 @@ const AuthorizationController = {
 
     res.redirect(authorizationURL);
   },
-  callback: async (req, res) => {
+  callback: async (req, res, next) => {
     try {
       console.log("===== In Callback Controller =====");
       const response = await fetch(`${config.authorizationHost}/oauth/token`,
